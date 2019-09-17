@@ -1,2 +1,2 @@
 # waterskibaan
-Waterskibaan opdracht voor C# lessen
+Waterskibaan opdracht voor C#
