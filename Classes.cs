@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -130,6 +129,38 @@ namespace Waterskibaan
             {
                 return "";
             }
+        }
+    }
+
+    class LijnenVoorraad
+    {
+        private Queue<Lijn> _lijnen;
+
+        public void LijnToevoegenAanRij(Lijn lijn)
+        {
+
+        }
+
+        public Lijn VerwijderEersteLijn()
+        {
+            if (_lijnen.Count == 0)
+            {
+                return _lijnen.Dequeue();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public int GetAantalLijnen()
+        {
+            return 0;
+        }
+
+        public override string ToString()
+        {
+            return $"{_lijnen.Count} lijnen op voorraad";
         }
     }
 }
