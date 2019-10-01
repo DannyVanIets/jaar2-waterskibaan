@@ -36,10 +36,9 @@ namespace Waterskibaan
             
         }
 
-        //In de documentatie staat dat je color moet gebruiken als property, maar die heb ik niet?
-        public string KledingKleur()
+        public Color KledingKleur()
         {
-            return "Kleur van kleding";
+            
         }
     }
 
