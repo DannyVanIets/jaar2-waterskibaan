@@ -8,69 +8,31 @@ namespace Waterskibaan
 {
     class Waterskibaan
     {
-        Kabel kabel { get; set; }
+        Kabel Kabel { get; set; }
         LijnenVoorraad lv = new LijnenVoorraad();
 
-        public Waterskibaan(Kabel kbl)
+        public Waterskibaan(Kabel kabel)
         {
-            for (int i = 0; i < 15; i++)
+            for(int i = 0; i < 15; i++)
             {
                 lv.LijnToevoegenAanRij(new Lijn());
             }
-            kabel = kbl;
+            Kabel = kabel;
         }
 
         //Deze methode zorgt ervoor dat een lijn op positie 9 wordt toegevoegd aan de lijnen voorraad en daarna wordt toegevoegd.
         public void VerplaatsKabel()
         {
-            if (kabel.VerwijderLijnVanKabel() != null)
+            if(Kabel.VerwijderLijnVanKabel() != null)
             {
-                lv.LijnToevoegenAanRij(kabel.VerwijderLijnVanKabel());
-                kabel.VerwijderEenLijn(kabel.VerwijderLijnVanKabel());
-            }
-        }
-
-        public void SporterStart(Sporter sp)
-        {
-            kabel.sporter = sp;
-            lv.sporter = sp;
-
-            Lijn SporterLijn = new Lijn();
-
-            if(kabel.IsStartPositieLeeg())
-            {
-                kabel.NeemLijnInGebruik(SporterLijn);
-                lv.VerwijderEersteLijn();
-            }
-
-            Random random = new Random();
-            sp.AantalRondenNogTeGaan = random.Next(1, 3);
-
-            if (random.Next(1, 6) == 1)
-            {
-                sp.KledingKleur = "Groen";
-            }
-            else if (random.Next(1, 6) == 2)
-            {
-                sp.KledingKleur = "Blauw";
-            }
-            else if (random.Next(1, 6) == 3)
-            {
-                sp.KledingKleur = "Rood";
-            }
-            else if (random.Next(1, 6) == 4)
-            {
-                sp.KledingKleur = "Paars";
-            }
-            else if (random.Next(1, 6) == 5)
-            {
-                sp.KledingKleur = "Wit";
+                lv.LijnToevoegenAanRij(Kabel.VerwijderLijnVanKabel());
+                Kabel.VerwijderEenLijn(Kabel.VerwijderLijnVanKabel());
             }
         }
 
         public override string ToString()
         {
-            return lv.ToString() + "\n" + kabel.ToString();
+            return lv.ToString() + "\n" + Kabel.ToString();
         }
     }
 }

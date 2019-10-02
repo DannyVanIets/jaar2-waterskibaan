@@ -10,7 +10,7 @@ namespace Waterskibaan
     {
         public Zwemvest Zwemvest;
         public Skies Skies;
-        public string KledingKleur;
+        public Color KledingKleur;
 
         public int AantalRondenNogTeGaan = 0;
         public int BehaaldePunten = 0;
