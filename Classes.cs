@@ -8,20 +8,7 @@ namespace Waterskibaan
 {
     class Classes
     {
-        
-    }
 
-    class Sporter
-    {
-        public int AantalRondenNogTeGaan = 0;
-        public Zwemvest Zwemvest;
-        public Skies Skies;
-        public Color KledingKleur;
-        public Moves<IMoves> list = new Moves<IMoves>();
-        public Sporter(List<IMoves> moves)
-        {
-
-        }
     }
 
     class Zwemvest
