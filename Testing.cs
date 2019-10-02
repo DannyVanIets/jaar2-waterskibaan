@@ -10,8 +10,8 @@ namespace Waterskibaan
     {
         static void Main(string[] args)
         {
-            TestOpdracht2();
-            //TestOpdracht3();
+            //TestOpdracht2();
+            TestOpdracht3();
         }
 
         private static void TestOpdracht3()
