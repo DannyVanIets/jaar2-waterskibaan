@@ -12,7 +12,14 @@ namespace Waterskibaan
         {
             //TestOpdracht2();
             //TestOpdracht3();
-            TestOpdracht4();
+            //TestOpdracht4();
+            TestOpdracht5();
+        }
+
+        private static void TestOpdracht5()
+        {
+            Sporter sporter = new Sporter();
+            Console.WriteLine(sporter.ToString());
         }
 
         private static void TestOpdracht4()
