@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Classes
-    {
-
-    }
-
     class Zwemvest
     {
 
@@ -24,16 +19,5 @@ namespace Waterskibaan
     class Lijn
     {
         public int PositieOpDeKabel { get; set; }
-    }
-
-    class Moves<T>
-    {
-
-    }
-
-    //Replacement for Color, which isn't a type in a console application.
-    class Color
-    {
-
     }
 }
