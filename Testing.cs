@@ -10,8 +10,43 @@ namespace Waterskibaan
     {
         static void Main(string[] args)
         {
-            TestOpdracht2();
+            //TestOpdracht2();
             //TestOpdracht3();
+            //TestOpdracht4();
+            TestOpdracht5();
+        }
+
+        private static void TestOpdracht5()
+        {
+            Sporter sporter = new Sporter();
+            Console.WriteLine(sporter.ToString());
+        }
+
+        private static void TestOpdracht4()
+        {
+            //Al deze code kijkt als er een lijn op positie 9 is of het dan goed wordt verplaats naar de lijnvoorraad.
+            Kabel kabel = new Kabel();
+            Lijn lijn1 = new Lijn();
+            Lijn lijn2 = new Lijn();
+
+            kabel.NeemLijnInGebruik(lijn1);
+            kabel.VerschuifLijnen();
+            kabel.NeemLijnInGebruik(lijn2);
+
+            kabel.VerschuifLijnen();
+            kabel.VerschuifLijnen();
+            kabel.VerschuifLijnen();
+            kabel.VerschuifLijnen();
+            kabel.VerschuifLijnen();
+            kabel.VerschuifLijnen();
+            kabel.VerschuifLijnen();
+            kabel.VerschuifLijnen();
+            Console.WriteLine(kabel.ToString());
+
+            Waterskibaan wsb = new Waterskibaan(kabel);
+            Console.WriteLine(wsb.ToString());
+            wsb.VerplaatsKabel();
+            Console.WriteLine(wsb.ToString());
         }
 
         private static void TestOpdracht3()

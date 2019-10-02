@@ -9,6 +9,7 @@ namespace Waterskibaan
     class Kabel
     {
         private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
+        public Sporter sporter;
 
         public bool IsStartPositieLeeg()
         {
@@ -16,10 +17,7 @@ namespace Waterskibaan
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public void NeemLijnInGebruik(Lijn lijn)
@@ -37,8 +35,8 @@ namespace Waterskibaan
                 if (l.PositieOpDeKabel == 9 && VerwijderLijnVanKabel() != null)
                 {
                     _lijnen.AddFirst(VerwijderLijnVanKabel());
-                    _lijnen.RemoveLast();
                     l.PositieOpDeKabel = 0;
+                    sporter.AantalRondenNogTeGaan--;
                     break;
                 }
                 else
@@ -50,14 +48,20 @@ namespace Waterskibaan
 
         public Lijn VerwijderLijnVanKabel()
         {
-            if (_lijnen.Last.Value.PositieOpDeKabel == 9)
+            Lijn lijn;
+            if (_lijnen.Last.Value.PositieOpDeKabel == 9 && sporter.AantalRondenNogTeGaan == 1)
             {
-                return _lijnen.Last.Value;
+                lijn = _lijnen.Last.Value;
+                _lijnen.RemoveLast();
+                return lijn;
             }
-            else
-            {
-                return null;
-            }
+            return null;
+        }
+
+        //Zelf gemaakte method die niet in het domeinmodel staat die er voor zorgt dat een specifieke lijn wordt verwijderd. Weet niet of dat mag, maar dat zien we wel.
+        public void VerwijderEenLijn(Lijn lijn)
+        {
+            _lijnen.Remove(lijn);
         }
 
         public override string ToString()

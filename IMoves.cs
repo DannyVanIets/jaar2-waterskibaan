@@ -8,7 +8,10 @@ namespace Waterskibaan
 {
     interface IMoves
     {
-        //In de documentatie heeft de move () erachter, maar geen idee wat daarmee wordt bedoeld.
         int Move();
+        int Springen();
+        int EenBeenSkiën();
+        int EenHandLijnVastHouden();
+        int Omdraaien();
     }
 }
