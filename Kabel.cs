@@ -60,6 +60,12 @@ namespace Waterskibaan
             }
         }
 
+        //Zelf gemaakte method die niet in het domeinmodel staat die er voor zorgt dat een specifieke lijn wordt verwijderd. Weet niet of dat mag, maar dat zien we wel.
+        public void VerwijderEenLijn(Lijn lijn)
+        {
+            _lijnen.Remove(lijn);
+        }
+
         public override string ToString()
         {
             if (_lijnen.Count != 0)
