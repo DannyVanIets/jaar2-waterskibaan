@@ -15,7 +15,47 @@ namespace Waterskibaan
         }
         private static void TestOpdracht2()
         {
+            Kabel kabel1 = new Kabel();
+            Lijn lijn1 = new Lijn();
+            Console.WriteLine(kabel1.ToString());
 
+            //Test om te zien of een lijn succesvol wordt toegevoegd en of de start positie leeg is.
+            Console.WriteLine(kabel1.IsStartPositieLeeg());
+            kabel1.NeemLijnInGebruik(lijn1);
+            Console.WriteLine(kabel1.IsStartPositieLeeg());
+            Console.WriteLine(kabel1.ToString());
+
+            //Test om te zien of het verschuiven goed gaat.
+            kabel1.VerschuifLijnen();
+            Console.WriteLine(kabel1.ToString());
+
+            //Test om te zien of een 2de lijn succesvol wordt toegevoegd
+            Lijn lijn2 = new Lijn();
+            kabel1.NeemLijnInGebruik(lijn2);
+            Console.WriteLine(kabel1.ToString());
+
+            //Test om te zien of het verschuiven van meerder lijnen goed gaat.
+            kabel1.VerschuifLijnen();
+            Console.WriteLine(kabel1.ToString());
+            kabel1.VerschuifLijnen();
+
+            //Kijken of het toevoegen van een 3de lijn goed gaat.
+            Lijn lijn3 = new Lijn();
+            kabel1.NeemLijnInGebruik(lijn3);
+            Console.WriteLine(kabel1.ToString());
+
+            //Hier verschuiven we de lijnen tot er een op de 9de positie is.
+            kabel1.VerschuifLijnen();
+            kabel1.VerschuifLijnen();
+            kabel1.VerschuifLijnen();
+            kabel1.VerschuifLijnen();
+            kabel1.VerschuifLijnen();
+            kabel1.VerschuifLijnen();
+            Console.WriteLine(kabel1.ToString());
+
+            //Hier testen we hoe de methode omgaat met een lijn op positie 9.
+            kabel1.VerschuifLijnen();
+            Console.WriteLine(kabel1.ToString());
         }
     }
 
@@ -60,19 +100,16 @@ namespace Waterskibaan
 
     class Lijn
     {
-        public void PositieOpKabel()
-        {
-
-        }
+        public int PositieOpDeKabel { get; set; }
     }
 
     class Kabel
     {
-        private LinkedList<Lijn> _lijnen;
+        private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
 
-        public Boolean IsStartPositieLeeg()
+        public bool IsStartPositieLeeg()
         {
-            if (_lijnen.First.Value != null)
+            if (_lijnen.Count == 0 || _lijnen.First.Value.PositieOpDeKabel >= 1)
             {
                 return true;
             }
@@ -84,7 +121,7 @@ namespace Waterskibaan
 
         public void NeemLijnInGebruik(Lijn lijn)
         {
-            if (_lijnen.First.Value != null)
+            if (IsStartPositieLeeg())
             {
                 _lijnen.AddFirst(lijn);
             }
@@ -92,20 +129,25 @@ namespace Waterskibaan
 
         public void VerschuifLijnen()
         {
-            if (_lijnen.Count == 9)
+            foreach (Lijn l in _lijnen)
             {
-                _lijnen.AddFirst(_lijnen.Last.Value);
-                _lijnen.RemoveLast();
-            }
-            else
-            {
-                //Moet nog functie bijkomen die er voor zorgt dat de posities worden aangepast!
+                if (l.PositieOpDeKabel == 9 && VerwijderLijnVanKabel() != null)
+                {
+                    _lijnen.AddFirst(VerwijderLijnVanKabel());
+                    _lijnen.RemoveLast();
+                    l.PositieOpDeKabel = 0;
+                    break;
+                }
+                else
+                {
+                    l.PositieOpDeKabel++;
+                }
             }
         }
 
         public Lijn VerwijderLijnVanKabel()
         {
-            if (_lijnen.Count >= 8)
+            if (_lijnen.Last.Value.PositieOpDeKabel == 9)
             {
                 return _lijnen.Last.Value;
             }
@@ -117,13 +159,23 @@ namespace Waterskibaan
 
         public override string ToString()
         {
-            if (_lijnen.Count == 0)
+            if (_lijnen.Count != 0)
             {
+                int i = 0;
+                string lijnAchterPositie = "|";
+                string allePosities = "";
+
                 foreach (Lijn l in _lijnen)
                 {
-                    return $"{l}|";
+                    i++;
+                    if (_lijnen.Count == i)
+                    {
+                        lijnAchterPositie = "";
+                    }
+                    allePosities += $"{l.PositieOpDeKabel}{lijnAchterPositie}";
                 }
-                return "";
+
+                return allePosities;
             }
             else
             {
