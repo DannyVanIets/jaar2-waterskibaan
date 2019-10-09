@@ -9,7 +9,6 @@ namespace Waterskibaan
     class LijnenVoorraad
     {
         private Queue<Lijn> _lijnen = new Queue<Lijn>();
-        public Sporter sporter;
 
         public void LijnToevoegenAanRij(Lijn lijn)
         {

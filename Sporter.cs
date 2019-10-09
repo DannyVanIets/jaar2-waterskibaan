@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Waterskibaan
 {
@@ -10,19 +11,18 @@ namespace Waterskibaan
     {
         public Zwemvest Zwemvest;
         public Skies Skies;
-        public string KledingKleur;
+        public Color KledingKleur;
 
         public int AantalRondenNogTeGaan = 0;
         public int BehaaldePunten = 0;
         public List<Moves> moves = new List<Moves>();
 
-        public Sporter()
+        public Sporter(Zwemvest zwemvest, Skies skies)
         {
             moves = MoveCollection.GetWillekeurigeMoves();
-            foreach (Moves move in moves)
-            {
-                BehaaldePunten += move.Uitvoeren();
-            }
+            KledingKleur = Color.Green;
+            Zwemvest = zwemvest;
+            Skies = skies;
         }
 
         public override string ToString()

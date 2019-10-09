@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Waterskibaan
 {
@@ -26,16 +27,18 @@ namespace Waterskibaan
             if (kabel.VerwijderLijnVanKabel() != null)
             {
                 lv.LijnToevoegenAanRij(kabel.VerwijderLijnVanKabel());
-                kabel.VerwijderEenLijn(kabel.VerwijderLijnVanKabel());
             }
         }
 
         public void SporterStart(Sporter sp)
         {
-            kabel.sporter = sp;
-            lv.sporter = sp;
+            if (sp.Skies == null || sp.Zwemvest == null)
+            {
+                throw new ArgumentException(nameof(sp), "Sporter moet skies of zwemvest hebben!");
+            }
 
             Lijn SporterLijn = new Lijn();
+            SporterLijn.sporter = sp;
 
             if(kabel.IsStartPositieLeeg())
             {
@@ -48,23 +51,23 @@ namespace Waterskibaan
 
             if (random.Next(1, 6) == 1)
             {
-                sp.KledingKleur = "Groen";
+                sp.KledingKleur = Color.Green;
             }
             else if (random.Next(1, 6) == 2)
             {
-                sp.KledingKleur = "Blauw";
+                sp.KledingKleur = Color.Blue;
             }
             else if (random.Next(1, 6) == 3)
             {
-                sp.KledingKleur = "Rood";
+                sp.KledingKleur = Color.Red;
             }
             else if (random.Next(1, 6) == 4)
             {
-                sp.KledingKleur = "Paars";
+                sp.KledingKleur = Color.Purple;
             }
             else if (random.Next(1, 6) == 5)
             {
-                sp.KledingKleur = "Wit";
+                sp.KledingKleur = Color.White;
             }
         }
 
