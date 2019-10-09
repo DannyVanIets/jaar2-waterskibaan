@@ -13,7 +13,7 @@ namespace Waterskibaan
             //TestOpdracht2();
             //TestOpdracht3();
             //TestOpdracht4();
-            //TestOpdracht5();
+            TestOpdracht5();
         }
 
         private static void TestOpdracht5()

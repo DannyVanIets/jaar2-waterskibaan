@@ -53,11 +53,6 @@ namespace Waterskibaan
             return result;
         }
 
-        public int Move()
-        {
-            return 0;
-        }
-
         public int Springen()
         {
             Random random = new Random();
