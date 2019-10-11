@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InstructieGroep.cs" />
+    <Compile Include="Wachtrij.cs" />
     <Compile Include="WachtrijInstructie.cs" />
     <Compile Include="IMoves.cs" />
     <Compile Include="IWachtrij.cs" />
@@ -63,12 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Classes\Classes.csproj">
-      <Project>{fb3e469b-5ce5-433a-b917-eee374a4d8cf}</Project>
-      <Name>Classes</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

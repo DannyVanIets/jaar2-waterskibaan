@@ -6,23 +6,26 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class WachtrijStarten : IWachtrij
+    class WachtrijStarten : Wachtrij, IWachtrij
     {
-        public int MAX_LENGTE_RIJ = 20;
+        new int MAX_LENGTE_RIJ = 20;
 
-        public List<Sporter> GetAlleSporters()
+        public override void SporterNeemPlaatsInRij(Sporter sporter)
         {
-            
+            if (GetAlleSporters().Count < MAX_LENGTE_RIJ)
+            {
+                GetAlleSporters().Enqueue(sporter);
+                Console.WriteLine($"Sporter succesvol toegevoegd!");
+            }
+            else
+            {
+                Console.WriteLine("Het zit vol! Sporter is niet toegevoegd");
+            }
         }
 
-        public void SporterNeemPlaatsInRij(Sporter sporter)
+        public override string ToString()
         {
-            
-        }
-
-        public List<Sporter> SportersVerlaten(int aantal)
-        {
-            
+            return $"Er zitten {GetAlleSporters().Count}/{MAX_LENGTE_RIJ} sporters in het starten van de wachtrij.";
         }
     }
 }
