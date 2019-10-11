@@ -13,13 +13,59 @@ namespace Waterskibaan
             //TestOpdracht2();
             //TestOpdracht3();
             //TestOpdracht4();
-            TestOpdracht5();
+            //TestOpdracht5();
+            TestOpdracht10();
+        }
+
+        private static void TestOpdracht10()
+        {
+            Zwemvest zwemvest = new Zwemvest();
+            Skies skies = new Skies();
+
+            WachtrijStarten ws = new WachtrijStarten();
+            InstructieGroep ig = new InstructieGroep();
+            WachtrijInstructie wi = new WachtrijInstructie();
+
+            Sporter sporter1 = new Sporter(zwemvest, skies);
+            Sporter sporter2 = new Sporter(zwemvest, skies);
+            Sporter sporter3 = new Sporter(zwemvest, skies);
+            Sporter sporter4 = new Sporter(zwemvest, skies);
+            Sporter sporter5 = new Sporter(zwemvest, skies);
+            Sporter sporter6 = new Sporter(zwemvest, skies);
+            Sporter sporter7 = new Sporter(zwemvest, skies);
+
+            Console.WriteLine(ws.ToString());
+            ws.SporterNeemPlaatsInRij(sporter1);
+            ws.SporterNeemPlaatsInRij(sporter2);
+            ws.SporterNeemPlaatsInRij(sporter3);
+            Console.WriteLine(ws.ToString());
+
+            ws.SportersVerlaten(2);
+            Console.WriteLine(ws.ToString());
+
+            Console.WriteLine(ig.ToString());
+            ig.SporterNeemPlaatsInRij(sporter1);
+            ig.SporterNeemPlaatsInRij(sporter2);
+            ig.SporterNeemPlaatsInRij(sporter4);
+            ig.SporterNeemPlaatsInRij(sporter5);
+            ig.SporterNeemPlaatsInRij(sporter6);
+            ig.SporterNeemPlaatsInRij(sporter7);
+            Console.WriteLine(ig.ToString());
+
+            ig.SportersVerlaten(6);
+            Console.WriteLine(ig.ToString());
+
+            ig.SportersVerlaten(5);
+            Console.WriteLine(ig.ToString());
+
+            wi.SporterNeemPlaatsInRij(sporter4);
+            Console.WriteLine(wi.ToString());
         }
 
         private static void TestOpdracht5()
         {
-            Sporter sporter = new Sporter();
-            Console.WriteLine(sporter.ToString());
+            //Sporter sporter = new Sporter();
+            //Console.WriteLine(sporter.ToString());
         }
 
         private static void TestOpdracht4()
