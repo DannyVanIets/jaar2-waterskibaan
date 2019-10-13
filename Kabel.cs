@@ -24,6 +24,7 @@ namespace Waterskibaan
             if (IsStartPositieLeeg())
             {
                 _lijnen.AddFirst(lijn);
+                lijn.PositieOpDeKabel = 0;
             }
         }
 
@@ -31,30 +32,25 @@ namespace Waterskibaan
         {
             foreach (Lijn l in _lijnen)
             {
-                if (l.PositieOpDeKabel == 9 && VerwijderLijnVanKabel() != null)
-                {
-                    _lijnen.AddFirst(VerwijderLijnVanKabel());
-                    l.PositieOpDeKabel = 0;
-                    l.sporter.AantalRondenNogTeGaan--;
-                    break;
-                }
-                else
-                {
-                    l.PositieOpDeKabel++;
-                }
+                l.PositieOpDeKabel++;
+            }
+
+            if (_lijnen.Last.Value.PositieOpDeKabel > 9)
+            {
+                Lijn lijn = _lijnen.Last.Value;
+                NeemLijnInGebruik(lijn);
+                _lijnen.RemoveLast();
+                lijn.sporter.AantalRondenNogTeGaan--;
             }
         }
 
         public Lijn VerwijderLijnVanKabel()
         {
             Lijn lijn;
-            if (_lijnen.Last.Value.PositieOpDeKabel == 9)
+            if (_lijnen.Last.Value.PositieOpDeKabel > 9)
             {
                 lijn = _lijnen.Last.Value;
-                if(lijn.sporter.AantalRondenNogTeGaan == 1)
-                {
-                    _lijnen.RemoveLast();
-                }
+                _lijnen.RemoveLast();
                 return lijn;
             }
             return null;
