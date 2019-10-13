@@ -9,24 +9,23 @@ namespace Waterskibaan
 {
     class Waterskibaan
     {
-        Kabel kabel { get; set; }
+        Kabel kabel = new Kabel();
         LijnenVoorraad lv = new LijnenVoorraad();
 
-        public Waterskibaan(Kabel kbl)
+        public Waterskibaan()
         {
             for (int i = 0; i < 15; i++)
             {
                 lv.LijnToevoegenAanRij(new Lijn());
             }
-            kabel = kbl;
         }
 
         //Deze methode zorgt ervoor dat een lijn op positie 9 wordt toegevoegd aan de lijnen voorraad en daarna wordt toegevoegd.
         public void VerplaatsKabel()
         {
-            if (kabel.VerwijderLijnVanKabel() != null)
+            if(lv.GetAantalLijnen() != 0)
             {
-                lv.LijnToevoegenAanRij(kabel.VerwijderLijnVanKabel());
+                kabel.VerschuifLijnen();
             }
         }
 
@@ -40,11 +39,9 @@ namespace Waterskibaan
             Lijn SporterLijn = new Lijn();
             SporterLijn.sporter = sp;
 
-            if(kabel.IsStartPositieLeeg())
-            {
-                kabel.NeemLijnInGebruik(SporterLijn);
-                lv.VerwijderEersteLijn();
-            }
+            
+            kabel.NeemLijnInGebruik(SporterLijn);
+            lv.VerwijderEersteLijn();
 
             Random random = new Random();
             sp.AantalRondenNogTeGaan = random.Next(1, 3);

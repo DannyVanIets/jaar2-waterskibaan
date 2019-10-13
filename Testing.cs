@@ -14,7 +14,14 @@ namespace Waterskibaan
             //TestOpdracht3();
             //TestOpdracht4();
             //TestOpdracht5();
-            TestOpdracht10();
+            //TestOpdracht10();
+            TestOpdracht11();
+        }
+
+        private static void TestOpdracht11()
+        {
+            Game game = new Game();
+            game.Intilize();
         }
 
         private static void TestOpdracht10()
@@ -64,8 +71,10 @@ namespace Waterskibaan
 
         private static void TestOpdracht5()
         {
-            //Sporter sporter = new Sporter();
-            //Console.WriteLine(sporter.ToString());
+            Zwemvest zwemvest = new Zwemvest();
+            Skies skies = new Skies();
+            Sporter sporter = new Sporter(zwemvest, skies);
+            Console.WriteLine(sporter.ToString());
         }
 
         private static void TestOpdracht4()
@@ -89,7 +98,7 @@ namespace Waterskibaan
             kabel.VerschuifLijnen();
             Console.WriteLine(kabel.ToString());
 
-            Waterskibaan wsb = new Waterskibaan(kabel);
+            Waterskibaan wsb = new Waterskibaan();
             Console.WriteLine(wsb.ToString());
             wsb.VerplaatsKabel();
             Console.WriteLine(wsb.ToString());
