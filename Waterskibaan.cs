@@ -32,11 +32,6 @@ namespace Waterskibaan
             {
                 lijn.sporter.HuidigeMove();
             }
-            Random random = new Random();
-            if(random.Next(0, 4) == 0)
-            {
-                kabel._lijnen.
-            }
         }
 
         public void SporterStart(Sporter sp)
