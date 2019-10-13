@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="InstructieAfgelopenArgs.cs" />
     <Compile Include="InstructieGroep.cs" />
+    <Compile Include="NieuweBezoekerArgs.cs" />
     <Compile Include="Wachtrij.cs" />
     <Compile Include="WachtrijInstructie.cs" />
     <Compile Include="IMoves.cs" />

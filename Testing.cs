@@ -15,7 +15,14 @@ namespace Waterskibaan
             //TestOpdracht4();
             //TestOpdracht5();
             //TestOpdracht10();
-            TestOpdracht11();
+            //TestOpdracht11();
+            TestOpdracht12();
+        }
+
+        private static void TestOpdracht12()
+        {
+            Game game = new Game();
+            game.Intilize();
         }
 
         private static void TestOpdracht11()

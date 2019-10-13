@@ -8,7 +8,7 @@ namespace Waterskibaan
 {
     class Kabel
     {
-        private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
+        public LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
 
         public bool IsStartPositieLeeg()
         {
@@ -35,7 +35,7 @@ namespace Waterskibaan
                 l.PositieOpDeKabel++;
             }
 
-            if (_lijnen.Last.Value.PositieOpDeKabel > 9)
+            if (_lijnen?.Last?.Value?.PositieOpDeKabel > 9)
             {
                 Lijn lijn = _lijnen.Last.Value;
                 NeemLijnInGebruik(lijn);

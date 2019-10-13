@@ -25,6 +25,18 @@ namespace Waterskibaan
             Skies = skies;
         }
 
+        public void HuidigeMove()
+        {
+            Random random = new Random();
+            int aantalMoves = moves.Count;
+            Moves move = moves[random.Next(0, aantalMoves)];
+
+            if (random.Next(0, 4) == 0)
+            {
+                BehaaldePunten += move.Uitvoeren();
+            }
+        }
+
         public override string ToString()
         {
             return $"Aantal behaalde punten: {BehaaldePunten}";

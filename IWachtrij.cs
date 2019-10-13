@@ -9,7 +9,7 @@ namespace Waterskibaan
     interface IWachtrij
     {
         void SporterNeemPlaatsInRij(Sporter sporter);
-        Queue<Sporter> GetAlleSporters();
-        Queue<Sporter> SportersVerlaten(int aantal);
+        List<Sporter> GetAlleSporters();
+        List<Sporter> SportersVerlaten(int aantal);
     }
 }
