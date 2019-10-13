@@ -12,7 +12,7 @@ namespace Waterskibaan
         {
             List<Moves> moves = new List<Moves>();
             Random random = new Random();
-            for(int i = 0; i < random.Next(1, 21); i++)
+            for(int i = 0; i < random.Next(0, 21); i++)
             {
                 moves.Add(new Moves());
             }

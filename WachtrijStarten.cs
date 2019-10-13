@@ -14,7 +14,7 @@ namespace Waterskibaan
         {
             if (GetAlleSporters().Count < MAX_LENGTE_RIJ)
             {
-                GetAlleSporters().Enqueue(sporter);
+                alleSporters.Enqueue(sporter);
                 Console.WriteLine($"Sporter succesvol toegevoegd!");
             }
             else

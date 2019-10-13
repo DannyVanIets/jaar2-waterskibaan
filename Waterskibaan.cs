@@ -9,7 +9,7 @@ namespace Waterskibaan
 {
     class Waterskibaan
     {
-        Kabel kabel = new Kabel();
+        public Kabel kabel = new Kabel();
         LijnenVoorraad lv = new LijnenVoorraad();
 
         public Waterskibaan()
@@ -26,6 +26,16 @@ namespace Waterskibaan
             if(lv.GetAantalLijnen() != 0)
             {
                 kabel.VerschuifLijnen();
+            }
+
+            foreach(Lijn lijn in kabel._lijnen)
+            {
+                lijn.sporter.HuidigeMove();
+            }
+            Random random = new Random();
+            if(random.Next(0, 4) == 0)
+            {
+                kabel._lijnen.
             }
         }
 

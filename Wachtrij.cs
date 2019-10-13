@@ -10,29 +10,37 @@ namespace Waterskibaan
     {
         public int MAX_LENGTE_RIJ;
 
-        Queue<Sporter> alleSporters = new Queue<Sporter>();
+        public Queue<Sporter> alleSporters = new Queue<Sporter>();
 
-        public Queue<Sporter> GetAlleSporters()
+        public List<Sporter> GetAlleSporters()
         {
-            return alleSporters;
+            List<Sporter> alleSportersLijst = new List<Sporter>();
+
+            foreach (Sporter sporter in alleSporters)
+            {
+                alleSportersLijst.Add(sporter);
+            }
+
+            return alleSportersLijst;
         }
 
         public abstract void SporterNeemPlaatsInRij(Sporter sporter);
 
-        public Queue<Sporter> SportersVerlaten(int aantal)
+        public List<Sporter> SportersVerlaten(int aantal)
         {
+            List<Sporter> alleVerwijderdeSportersLijst = new List<Sporter>();
+
             if(aantal > alleSporters.Count)
             {
-                Console.WriteLine("Het aantal mag niet hoger zijn dan het aantal sporters!");
                 aantal = 0;
             }
 
             for (int i = 0; i < aantal; i++)
             {
-                alleSporters.Dequeue();
+                alleVerwijderdeSportersLijst.Add(alleSporters.Dequeue());
             }
 
-            return alleSporters;
+            return alleVerwijderdeSportersLijst;
         }
     }
 }
