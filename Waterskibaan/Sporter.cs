@@ -56,7 +56,7 @@ namespace Waterskibaan
             Skies = skies;
         }
 
-        public void HuidigeMove()
+        public bool HuidigeMove()
         {
             Random random = new Random();
             int aantalMoves = moves.Count;
@@ -66,7 +66,9 @@ namespace Waterskibaan
                 int number = random.Next(aantalMoves);
                 huidigeMove = moves[number];
                 BehaaldePunten += moves[number].Uitvoeren();
+                return true;
             }
+            return false;
         }
 
         public override string ToString()
