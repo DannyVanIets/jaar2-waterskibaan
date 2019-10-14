@@ -1,7 +1,0 @@
-D:\code\visual studio\Waterskibaan\obj\Debug\Waterskibaan.csprojAssemblyReference.cache
-D:\code\visual studio\Waterskibaan\obj\Debug\Waterskibaan.csproj.CoreCompileInputs.cache
-D:\code\visual studio\Waterskibaan\bin\Debug\Waterskibaan.exe.config
-D:\code\visual studio\Waterskibaan\bin\Debug\Waterskibaan.exe
-D:\code\visual studio\Waterskibaan\bin\Debug\Waterskibaan.pdb
-D:\code\visual studio\Waterskibaan\obj\Debug\Waterskibaan.exe
-D:\code\visual studio\Waterskibaan\obj\Debug\Waterskibaan.pdb

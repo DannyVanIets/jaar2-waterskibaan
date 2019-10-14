@@ -1,0 +1,29 @@
+﻿<Window x:Class="VisualisatieWaterskibaan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisualisatieWaterskibaan"
+        mc:Ignorable="d"
+        Title="Waterskibaan" Height="450" Width="1200">
+    <Grid>
+        <Label x:Name="LabelAlleWachtrijen" Content="Er zitten 0/100 sporters in de wachtrij voor instructies.
+               &#10;Er zitten 0/5 sporters in de instructiegroep.
+               &#10;Er zitten 0/20 sporters te wachten op een lijn." HorizontalAlignment="Left" Margin="250,31,0,0" VerticalAlignment="Top" Height="59" Width="315"/>
+        <Label x:Name="LabelAantalSecondenVoorbij" Content="Aantal seconden voorbij: 0" HorizontalAlignment="Left" Margin="979,23,0,0" VerticalAlignment="Top" Height="25" Width="179"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="250,31,0,0" VerticalAlignment="Top" Width="315"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="82" Margin="979,23,0,0" VerticalAlignment="Top" Width="179"/>
+        <Label x:Name="LabelTotaalAantalBezoekers" Content="Totaal aantal bezoekers: 0" HorizontalAlignment="Left" Margin="979,48,0,0" VerticalAlignment="Top" Height="27" Width="179"/>
+        <Canvas x:Name="watercirkel" HorizontalAlignment="Left" Height="323" Margin="603,75,0,0" VerticalAlignment="Top" Width="315" Background="#FF2A81FF"/>
+        <Label x:Name="LabeLijnvoorraad" Content="15 lijn(en) op voorraad" HorizontalAlignment="Left" Margin="979,75,0,0" VerticalAlignment="Top" Height="30" Width="179"/>
+        <ProgressBar x:Name="ProgressBarWaitingInstruction" HorizontalAlignment="Left" Height="15" Margin="26,60,0,0" VerticalAlignment="Top" Width="200" Maximum="3"/>
+        <Canvas x:Name="CanvasWaitingInstructions" HorizontalAlignment="Left" Height="200" Margin="26,75,0,0" VerticalAlignment="Top" Width="200" Background="#FFECFF7F"/>
+        <Label Content="Instructie wachten" HorizontalAlignment="Left" Margin="26,13,0,0" VerticalAlignment="Top" Height="47" Width="224" FontSize="24" RenderTransformOrigin="0.147,0.715"/>
+        <Canvas x:Name="CanvasInstructionGroep" HorizontalAlignment="Left" Height="50" Margin="26,348,0,0" VerticalAlignment="Top" Width="250" Background="#FFFFE336"/>
+        <ProgressBar x:Name="ProgressBarInstructieGroep" HorizontalAlignment="Left" Height="15" Margin="26,332,0,0" VerticalAlignment="Top" Width="250" Maximum="4"/>
+        <Label Content="Instructie groep" HorizontalAlignment="Left" Margin="26,285,0,0" VerticalAlignment="Top" Height="47" Width="200" FontSize="24" RenderTransformOrigin="0.147,0.715"/>
+        <Canvas x:Name="CanvasInstructieStarting" HorizontalAlignment="Left" Height="200" Margin="307,198,0,0" VerticalAlignment="Top" Width="200" Background="#FFFFA62F"/>
+        <Label Content="Instructie klaar" HorizontalAlignment="Left" Margin="307,131,0,0" VerticalAlignment="Top" Height="47" Width="224" FontSize="24" RenderTransformOrigin="0.147,0.715"/>
+        <ProgressBar x:Name="ProgressBarInstructionStarting" HorizontalAlignment="Left" Height="15" Margin="307,183,0,0" VerticalAlignment="Top" Width="200" Maximum="3"/>
+    </Grid>
+</Window>
