@@ -51,7 +51,7 @@ namespace VisualisatieWaterskibaan
             LabelAlleWachtrijen.Content = $"{game.ToString()}";
 
             LabelAantalSecondenVoorbij.Content = $"Aantal seconden voorbij: {game.totalSecondsPassed}";
-            LabelTotaalAantalBezoekers.Content = $"Totaal aantal bezoekers: {game.totaalAantalBezoekers}";
+            LabelTotaalAantalBezoekers.Content = $"Totaal aantal bezoekers: {game.logger.ReturnAlleBezoekers()}";
 
             LabeLijnvoorraad.Content = $"{game.waterskibaan.lv.ToString()}";
         }
@@ -155,6 +155,8 @@ namespace VisualisatieWaterskibaan
 
         public void SportersOpLijnenTekenen()
         {
+            watercirkel.Children.Clear();
+
             double axisx = 0.0;
             double axisy = 0.0;
 
@@ -179,11 +181,14 @@ namespace VisualisatieWaterskibaan
                 labelSporterMove.Height = 60;
 
                 labelSporterPositie.Content = $"Positie: {lijn.PositieOpDeKabel}";
-                labelSporterMove.Content = $"{lijn.sporter.huidigeMove}";
+                if(lijn.sporter.HuidigeMove())
+                {
+                    //labelSporterMove.Content = $"{lijn.sporter.huidigeMove.naamMove}";
+                }
 
                 watercirkel.Children.Add(rectangle);
                 watercirkel.Children.Add(labelSporterPositie);
-                //watercirkel.Children.Add(labelSporterMove);
+                watercirkel.Children.Add(labelSporterMove);
 
                 rectangle.SetValue(Canvas.LeftProperty, axisx);
                 rectangle.SetValue(Canvas.TopProperty, axisy);

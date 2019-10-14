@@ -12,9 +12,9 @@ namespace Waterskibaan
     {
         private static DispatcherTimer dispatchTimer;
         public int totalSecondsPassed = 0;
-        public int totaalAantalBezoekers = 0;
 
         public Waterskibaan waterskibaan;
+        public Logger logger;
 
         public WachtrijInstructie wi;
         public InstructieGroep ig;
@@ -41,6 +41,7 @@ namespace Waterskibaan
             wi = new WachtrijInstructie();
             ig = new InstructieGroep();
             ws = new WachtrijStarten();
+            logger = new Logger(waterskibaan.kabel);
 
             SetTimer();
 
@@ -63,7 +64,7 @@ namespace Waterskibaan
         {
             totalSecondsPassed++;
 
-            if (totalSecondsPassed % 3 == 0)
+            if (totalSecondsPassed % 2 == 0)
             {
                 zwemvest = new Zwemvest();
                 skies = new Skies();
@@ -72,12 +73,12 @@ namespace Waterskibaan
                 NieuweBezoeker.Invoke(new NieuweBezoekerArgs(sporter));
             }
 
-            if (totalSecondsPassed % 4 == 0)
+            if (totalSecondsPassed % 3 == 0)
             {
                 verplaatsLijnen.Invoke();
             }
 
-            if (totalSecondsPassed % 8 == 0)
+            if (totalSecondsPassed % 5 == 0)
             {
                 List<Sporter> alleWachtendeSporters = wi.SportersVerlaten(wi.GetAlleSporters().Count);
                 instructieAfgelopen.Invoke(new InstructieAfgelopenArgs(alleWachtendeSporters));
@@ -89,7 +90,7 @@ namespace Waterskibaan
         private void WachtrijBezoekerToevoegen(NieuweBezoekerArgs args)
         {
             wi.SporterNeemPlaatsInRij(args.Sporter);
-            totaalAantalBezoekers++;
+            logger.BezoekerToevoegen(args.Sporter);
         }
 
         private void InstructieIsAfgelopen(InstructieAfgelopenArgs args)
