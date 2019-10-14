@@ -33,27 +33,52 @@ namespace VisualisatieWaterskibaan
             game.Intilize(timer);
             timer.Tick += time_ticker;
 
-
             InitializeComponent();
         }
 
         void time_ticker(object sender, EventArgs args)
         {
-            LabelsAanpassen();
+            LabelsTonen();
             SportersOpLijnenTekenen();
             SportersWachtenOpInstructieTekenen();
             SportersInstructieGroepTekenen();
             SportersInstructionStartingTekenen();
+            LaatLichsteKleurenVanSportersZien();
         }
 
-        public void LabelsAanpassen()
+        public void LabelsTonen()
         {
             LabelAlleWachtrijen.Content = $"{game.ToString()}";
 
             LabelAantalSecondenVoorbij.Content = $"Aantal seconden voorbij: {game.totalSecondsPassed}";
             LabelTotaalAantalBezoekers.Content = $"Totaal aantal bezoekers: {game.logger.ReturnAlleBezoekers()}";
+            LabelTotaalAantalBezoekersMetRodeKleding.Content = $"Totaal aantal bezoekers met rode kleding: {game.logger.bezoekerMetRood}";
 
             LabeLijnvoorraad.Content = $"{game.waterskibaan.lv.ToString()}";
+        }
+
+        public void LaatLichsteKleurenVanSportersZien()
+        {
+            Top10LichsteKleuren.Children.Clear();
+
+            double CirkelAxisX = 0.0;
+            double CirkelAxisY = 0.0;
+
+            foreach (Sporter sporter in game.logger.TienSportersMetLichsteKleur())
+            {
+                Ellipse lichsteKleur = new Ellipse();
+
+                lichsteKleur.Fill = GetKleurSporter(sporter);
+                lichsteKleur.Width = 20;
+                lichsteKleur.Height = 20;
+
+                lichsteKleur.SetValue(Canvas.LeftProperty, CirkelAxisX);
+                lichsteKleur.SetValue(Canvas.TopProperty, CirkelAxisY);
+
+                Top10LichsteKleuren.Children.Add(lichsteKleur);
+
+                CirkelAxisY += 30;
+            }
         }
 
         public void SportersWachtenOpInstructieTekenen()
@@ -170,7 +195,6 @@ namespace VisualisatieWaterskibaan
                 Label labelSporterMove = new Label();
 
                 rectangle.Fill = GetKleurSporter(lijn.sporter);
-
                 rectangle.Width = 60;
                 rectangle.Height = 60;
 
@@ -180,10 +204,12 @@ namespace VisualisatieWaterskibaan
                 labelSporterMove.Width = 120;
                 labelSporterMove.Height = 60;
 
-                labelSporterPositie.Content = $"Positie: {lijn.PositieOpDeKabel}";
-                if(lijn.sporter.HuidigeMove())
+                labelSporterPositie.Content = $"Positie: {lijn.PositieOpDeKabel}\nRondes\nTeGaan: {lijn.sporter.AantalRondenNogTeGaan}";
+
+                string huidigeMove = lijn.sporter.HuidigeMove();
+                if (!string.IsNullOrEmpty(huidigeMove))
                 {
-                    //labelSporterMove.Content = $"{lijn.sporter.huidigeMove.naamMove}";
+                    labelSporterMove.Content = $"{huidigeMove}";
                 }
 
                 watercirkel.Children.Add(rectangle);
@@ -216,31 +242,7 @@ namespace VisualisatieWaterskibaan
 
         public SolidColorBrush GetKleurSporter(Sporter sporter)
         {
-            SolidColorBrush color = Brushes.Black;
-            if (sporter.KledingKleur == System.Drawing.Color.Green)
-            {
-                color = Brushes.Green;
-            }
-            else if (sporter.KledingKleur == System.Drawing.Color.Yellow)
-            {
-                color = Brushes.Yellow;
-            }
-            else if (sporter.KledingKleur == System.Drawing.Color.Red)
-            {
-                color = Brushes.Red;
-            }
-            else if (sporter.KledingKleur == System.Drawing.Color.Purple)
-            {
-                color = Brushes.Purple;
-            }
-            else if (sporter.KledingKleur == System.Drawing.Color.White)
-            {
-                color = Brushes.White;
-            }
-            else if (sporter.KledingKleur == System.Drawing.Color.Orange)
-            {
-                color = Brushes.Orange;
-            }
+            SolidColorBrush color = new SolidColorBrush(Color.FromArgb(sporter.KledingKleur.A, sporter.KledingKleur.R, sporter.KledingKleur.G, sporter.KledingKleur.B));
             return color;
         }
     }

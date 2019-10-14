@@ -9,13 +9,13 @@
     <Grid>
         <Label x:Name="LabelAlleWachtrijen" Content="Er zitten 0/100 sporters in de wachtrij voor instructies.
                &#10;Er zitten 0/5 sporters in de instructiegroep.
-               &#10;Er zitten 0/20 sporters te wachten op een lijn." HorizontalAlignment="Left" Margin="250,31,0,0" VerticalAlignment="Top" Height="59" Width="315"/>
-        <Label x:Name="LabelAantalSecondenVoorbij" Content="Aantal seconden voorbij: 0" HorizontalAlignment="Left" Margin="979,23,0,0" VerticalAlignment="Top" Height="25" Width="179"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="250,31,0,0" VerticalAlignment="Top" Width="315"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="82" Margin="979,23,0,0" VerticalAlignment="Top" Width="179"/>
-        <Label x:Name="LabelTotaalAantalBezoekers" Content="Totaal aantal bezoekers: 0" HorizontalAlignment="Left" Margin="979,48,0,0" VerticalAlignment="Top" Height="27" Width="179"/>
-        <Canvas x:Name="watercirkel" HorizontalAlignment="Left" Height="323" Margin="603,75,0,0" VerticalAlignment="Top" Width="315" Background="#FF2A81FF"/>
-        <Label x:Name="LabeLijnvoorraad" Content="15 lijn(en) op voorraad" HorizontalAlignment="Left" Margin="979,75,0,0" VerticalAlignment="Top" Height="30" Width="179"/>
+               &#10;Er zitten 0/20 sporters te wachten op een lijn." HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Height="59" Width="315"/>
+        <Label x:Name="LabelAantalSecondenVoorbij" Content="Aantal seconden voorbij: 0" HorizontalAlignment="Left" Margin="902,13,0,0" VerticalAlignment="Top" Height="25" Width="179"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="240,10,0,0" VerticalAlignment="Top" Width="315"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="108" Margin="902,13,0,0" VerticalAlignment="Top" Width="282"/>
+        <Label x:Name="LabelTotaalAantalBezoekers" Content="Totaal aantal bezoekers: 0" HorizontalAlignment="Left" Margin="902,63,0,0" VerticalAlignment="Top" Height="27" Width="282"/>
+        <Canvas x:Name="watercirkel" HorizontalAlignment="Left" Height="301" Margin="556,97,0,0" VerticalAlignment="Top" Width="315" Background="#FF2A81FF"/>
+        <Label x:Name="LabeLijnvoorraad" Content="15 lijn(en) op voorraad" HorizontalAlignment="Left" Margin="902,38,0,0" VerticalAlignment="Top" Height="30" Width="179"/>
         <ProgressBar x:Name="ProgressBarWaitingInstruction" HorizontalAlignment="Left" Height="15" Margin="26,60,0,0" VerticalAlignment="Top" Width="200" Maximum="3"/>
         <Canvas x:Name="CanvasWaitingInstructions" HorizontalAlignment="Left" Height="200" Margin="26,75,0,0" VerticalAlignment="Top" Width="200" Background="#FFECFF7F"/>
         <Label Content="Instructie wachten" HorizontalAlignment="Left" Margin="26,13,0,0" VerticalAlignment="Top" Height="47" Width="224" FontSize="24" RenderTransformOrigin="0.147,0.715"/>
@@ -25,5 +25,10 @@
         <Canvas x:Name="CanvasInstructieStarting" HorizontalAlignment="Left" Height="200" Margin="307,198,0,0" VerticalAlignment="Top" Width="200" Background="#FFFFA62F"/>
         <Label Content="Instructie klaar" HorizontalAlignment="Left" Margin="307,131,0,0" VerticalAlignment="Top" Height="47" Width="224" FontSize="24" RenderTransformOrigin="0.147,0.715"/>
         <ProgressBar x:Name="ProgressBarInstructionStarting" HorizontalAlignment="Left" Height="15" Margin="307,183,0,0" VerticalAlignment="Top" Width="200" Maximum="3"/>
+        <Label x:Name="LabelTotaalAantalBezoekersMetRodeKleding" Content="Totaal aantal bezoekers met rode kleding: 0" HorizontalAlignment="Left" Margin="902,90,0,0" VerticalAlignment="Top" Height="27" Width="282"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="231" Margin="902,167,0,0" VerticalAlignment="Top" Width="282">
+            <Canvas x:Name="Top10LichsteKleuren" Background="Black"/>
+        </Border>
+        <Label Content="Lichste kleuren" HorizontalAlignment="Left" Margin="922,122,0,0" VerticalAlignment="Top" Height="47" Width="224" FontSize="24" RenderTransformOrigin="0.147,0.715"/>
     </Grid>
 </Window>
