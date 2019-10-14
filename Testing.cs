@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Testing
+    public class Testing
     {
         static void Main(string[] args)
         {
@@ -16,19 +16,19 @@ namespace Waterskibaan
             //TestOpdracht5();
             //TestOpdracht10();
             //TestOpdracht11();
-            TestOpdracht12();
+            //TestOpdracht12();
         }
 
         private static void TestOpdracht12()
         {
             Game game = new Game();
-            game.Intilize();
+            //game.Intilize();
         }
 
         private static void TestOpdracht11()
         {
             Game game = new Game();
-            game.Intilize();
+            //game.Intilize();
         }
 
         private static void TestOpdracht10()

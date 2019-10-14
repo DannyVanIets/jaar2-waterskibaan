@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    interface IMoves
+    public interface IMoves
     {
         int Springen();
         int EenBeenSkiën();

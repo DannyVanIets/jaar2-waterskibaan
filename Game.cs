@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace Waterskibaan
 {
-    class Game
+    public class Game
     {
-        private static System.Timers.Timer aTimer;
+        private static DispatcherTimer dispatchTimer;
         public int totalSecondsPassed = 0;
+        public int totaalAantalBezoekers = 0;
 
-        private Waterskibaan waterskibaan;
+        public Waterskibaan waterskibaan;
 
         private WachtrijInstructie wi;
         private InstructieGroep ig;
@@ -31,8 +33,10 @@ namespace Waterskibaan
         public delegate void VerplaatsLijnenHandler();
         public event VerplaatsLijnenHandler verplaatsLijnen;
 
-        public void Intilize()
+        public void Intilize(DispatcherTimer timer)
         {
+            dispatchTimer = timer;
+
             waterskibaan = new Waterskibaan();
             wi = new WachtrijInstructie();
             ig = new InstructieGroep();
@@ -43,36 +47,21 @@ namespace Waterskibaan
             NieuweBezoeker += WachtrijBezoekerToevoegen;
             instructieAfgelopen += InstructieIsAfgelopen;
             verplaatsLijnen += LijnenWordenVerplaatst;
-
-            Console.WriteLine("\nPress the Enter key to exit the application...\n");
-            Console.ReadLine();
-            aTimer.Stop();
-            aTimer.Dispose();
-            Console.WriteLine("Terminating the application...");
         }
 
         private void SetTimer()
         {
             // Hier wordt een timer gezet dat er voor zorgt dat elke second dat hij door OnTimedEVent gaat.
-            aTimer = new System.Timers.Timer(1000);
+            dispatchTimer.Interval = TimeSpan.FromSeconds(1);
             // Hier dus.
-            aTimer.Elapsed += OnTimedEvent;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
+            dispatchTimer.Tick += OnTimedEvent;
+            dispatchTimer.IsEnabled = true;
+            dispatchTimer.Start();
         }
 
-        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private void OnTimedEvent(Object source, EventArgs e)
         {
             totalSecondsPassed++;
-
-            /*zwemvest = new Zwemvest();
-            skies = new Skies();
-            sporter = new Sporter(zwemvest, skies);
-
-            waterskibaan.SporterStart(sporter);
-            waterskibaan.VerplaatsKabel();
-
-            Console.WriteLine(waterskibaan.ToString());*/
 
             if (totalSecondsPassed % 3 == 0)
             {
@@ -100,6 +89,7 @@ namespace Waterskibaan
         private void WachtrijBezoekerToevoegen(NieuweBezoekerArgs args)
         {
             wi.SporterNeemPlaatsInRij(args.Sporter);
+            totaalAantalBezoekers++;
         }
 
         private void InstructieIsAfgelopen(InstructieAfgelopenArgs args)
@@ -130,13 +120,12 @@ namespace Waterskibaan
                     waterskibaan.SporterStart(sp);
                 }
             }
-
             waterskibaan.VerplaatsKabel();
         }
 
         public override string ToString()
         {
-            return $"_____________________________________________________________________ \n {wi.ToString()} \n {ig.ToString()} \n {ws.ToString()}";
+            return $"{wi.ToString()}\n{ig.ToString()}\n{ws.ToString()}";
         }
     }
 }

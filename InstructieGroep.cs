@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class InstructieGroep : Wachtrij, IWachtrij
+    public class InstructieGroep : Wachtrij, IWachtrij
     {
         new int MAX_LENGTE_RIJ = 5;
 
@@ -25,7 +25,7 @@ namespace Waterskibaan
 
         public override string ToString()
         {
-            return $"Er zitten {GetAlleSporters().Count}/{MAX_LENGTE_RIJ} sporters in de wachtrij voor de instructiegroep.";
+            return $"Er zitten {GetAlleSporters().Count}/{MAX_LENGTE_RIJ} sporters in de instructiegroep.";
         }
     }
 }

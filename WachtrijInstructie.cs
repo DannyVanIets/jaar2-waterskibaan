@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class WachtrijInstructie : Wachtrij, IWachtrij
+    public class WachtrijInstructie : Wachtrij, IWachtrij
     {
         new int MAX_LENGTE_RIJ = 100;
 

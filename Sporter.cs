@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Waterskibaan
 {
-    class Sporter
+    public class Sporter
     {
         public Zwemvest Zwemvest;
         public Skies Skies;
@@ -19,8 +19,38 @@ namespace Waterskibaan
 
         public Sporter(Zwemvest zwemvest, Skies skies)
         {
+            Random random = new Random();
+
+            if (random.Next(0, 6) == 0)
+            {
+                KledingKleur = Color.Green;
+            }
+            else if (random.Next(0, 6) == 1)
+            {
+                KledingKleur = Color.Yellow;
+            }
+            else if (random.Next(0, 6) == 2)
+            {
+                KledingKleur = Color.Red;
+            }
+            else if (random.Next(0, 6) == 3)
+            {
+                KledingKleur = Color.Purple;
+            }
+            else if (random.Next(0, 6) == 4)
+            {
+                KledingKleur = Color.White;
+            }
+            else if (random.Next(0, 6) == 5)
+            {
+                KledingKleur = Color.Orange;
+            }
+            else
+            {
+                KledingKleur = Color.Green;
+            }
+
             moves = MoveCollection.GetWillekeurigeMoves();
-            KledingKleur = Color.Green;
             Zwemvest = zwemvest;
             Skies = skies;
         }

@@ -7,10 +7,10 @@ using System.Drawing;
 
 namespace Waterskibaan
 {
-    class Waterskibaan
+    public class Waterskibaan
     {
         public Kabel kabel = new Kabel();
-        LijnenVoorraad lv = new LijnenVoorraad();
+        public LijnenVoorraad lv = new LijnenVoorraad();
 
         public Waterskibaan()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Moves : IMoves
+    public class Moves : IMoves
     {
         string naamMove { get; set; }
 
