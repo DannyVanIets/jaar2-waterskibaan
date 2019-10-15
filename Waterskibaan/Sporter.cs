@@ -13,50 +13,23 @@ namespace Waterskibaan
         public Skies Skies;
         public Color KledingKleur;
 
-        public int AantalRondenNogTeGaan = 0;
-        public int BehaaldePunten = 0;
-        public List<Moves> moves = new List<Moves>();
         public Moves huidigeMove;
+        public int AantalRondenNogTeGaan = 0;
+        public int aantalRonden = 0;
+        public int BehaaldePunten = 0;
+
+        public List<Moves> moves = new List<Moves>();
 
         public Sporter(Zwemvest zwemvest, Skies skies)
         {
             Random random = new Random();
-
-            if (random.Next(0, 6) == 0)
-            {
-                KledingKleur = Color.Green;
-            }
-            else if (random.Next(0, 6) == 1)
-            {
-                KledingKleur = Color.Yellow;
-            }
-            else if (random.Next(0, 6) == 2)
-            {
-                KledingKleur = Color.Red;
-            }
-            else if (random.Next(0, 6) == 3)
-            {
-                KledingKleur = Color.Purple;
-            }
-            else if (random.Next(0, 6) == 4)
-            {
-                KledingKleur = Color.White;
-            }
-            else if (random.Next(0, 6) == 5)
-            {
-                KledingKleur = Color.Orange;
-            }
-            else
-            {
-                KledingKleur = Color.Black;
-            }
-
+            KledingKleur = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
             moves = MoveCollection.GetWillekeurigeMoves();
             Zwemvest = zwemvest;
             Skies = skies;
         }
 
-        public bool HuidigeMove()
+        public void HuidigeMove()
         {
             Random random = new Random();
             int aantalMoves = moves.Count;
@@ -66,9 +39,9 @@ namespace Waterskibaan
                 int number = random.Next(aantalMoves);
                 huidigeMove = moves[number];
                 BehaaldePunten += moves[number].Uitvoeren();
-                return true;
+                return;
             }
-            return false;
+            huidigeMove = null;
         }
 
         public override string ToString()

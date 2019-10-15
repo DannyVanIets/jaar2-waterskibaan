@@ -8,7 +8,7 @@ namespace Waterskibaan
 {
     public class Moves : IMoves
     {
-        public string naamMove { get; set; }
+        public string naamMove = "";
 
         public Moves()
         {
@@ -19,11 +19,11 @@ namespace Waterskibaan
             }
             else if (random.Next(1, 5) == 2)
             {
-                naamMove = "Eenbeenskieen";
+                naamMove = "EenBeen";
             }
             else if (random.Next(1, 5) == 3)
             {
-                naamMove = "EenHandLijnVastHouden";
+                naamMove = "EenHand";
             }
             else if (random.Next(1, 5) == 4)
             {
@@ -38,11 +38,11 @@ namespace Waterskibaan
             {
                 result += Springen();
             }
-            else if (naamMove == "EenHandLijnVastHouden")
+            else if (naamMove == "EenHand")
             {
                 result += EenHandLijnVastHouden();
             }
-            else if (naamMove == "Eenbeenskieen")
+            else if (naamMove == "EenBeen")
             {
                 result += EenBeenSkiën();
             }

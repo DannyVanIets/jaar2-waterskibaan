@@ -23,7 +23,14 @@ namespace Waterskibaan
         //Deze methode zorgt ervoor dat een lijn op positie 9 wordt toegevoegd aan de lijnen voorraad en daarna wordt toegevoegd.
         public void VerplaatsKabel()
         {
-            if(lv.GetAantalLijnen() != 0)
+            Lijn laatsteLijn = kabel.VerwijderLijnVanKabel();
+
+            if(laatsteLijn != null)
+            {
+                lv.LijnToevoegenAanRij(laatsteLijn);
+            }
+
+            if (lv.GetAantalLijnen() != 0)
             {
                 kabel.VerschuifLijnen();
             }
@@ -48,28 +55,9 @@ namespace Waterskibaan
             lv.VerwijderEersteLijn();
 
             Random random = new Random();
-            sp.AantalRondenNogTeGaan = random.Next(1, 3);
-
-            if (random.Next(1, 6) == 1)
-            {
-                sp.KledingKleur = Color.Green;
-            }
-            else if (random.Next(1, 6) == 2)
-            {
-                sp.KledingKleur = Color.Blue;
-            }
-            else if (random.Next(1, 6) == 3)
-            {
-                sp.KledingKleur = Color.Red;
-            }
-            else if (random.Next(1, 6) == 4)
-            {
-                sp.KledingKleur = Color.Purple;
-            }
-            else if (random.Next(1, 6) == 5)
-            {
-                sp.KledingKleur = Color.White;
-            }
+            int aantalRonden = random.Next(0, 2);
+            sp.AantalRondenNogTeGaan = aantalRonden;
+            sp.aantalRonden = aantalRonden + 1;
         }
 
         public override string ToString()
