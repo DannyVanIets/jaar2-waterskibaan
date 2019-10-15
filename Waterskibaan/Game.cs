@@ -64,7 +64,7 @@ namespace Waterskibaan
         {
             totalSecondsPassed++;
 
-            if (totalSecondsPassed % 2 == 0)
+            if (totalSecondsPassed % 3 == 0)
             {
                 zwemvest = new Zwemvest();
                 skies = new Skies();
@@ -73,12 +73,12 @@ namespace Waterskibaan
                 NieuweBezoeker.Invoke(new NieuweBezoekerArgs(sporter));
             }
 
-            if (totalSecondsPassed % 3 == 0)
+            if (totalSecondsPassed % 2 == 0)
             {
                 verplaatsLijnen.Invoke();
             }
 
-            if (totalSecondsPassed % 5 == 0)
+            if (totalSecondsPassed % 8 == 0)
             {
                 List<Sporter> alleWachtendeSporters = wi.SportersVerlaten(wi.GetAlleSporters().Count);
                 instructieAfgelopen.Invoke(new InstructieAfgelopenArgs(alleWachtendeSporters));
@@ -112,6 +112,7 @@ namespace Waterskibaan
 
         private void LijnenWordenVerplaatst()
         {
+            waterskibaan.VerplaatsKabel();
             if(waterskibaan.kabel.IsStartPositieLeeg())
             {
                 List<Sporter> sporter = ws.SportersVerlaten(1);
@@ -121,7 +122,6 @@ namespace Waterskibaan
                     waterskibaan.SporterStart(sp);
                 }
             }
-            waterskibaan.VerplaatsKabel();
         }
 
         public override string ToString()

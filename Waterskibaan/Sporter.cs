@@ -13,8 +13,9 @@ namespace Waterskibaan
         public Skies Skies;
         public Color KledingKleur;
 
-        public string huidigeMove;
+        public Moves huidigeMove;
         public int AantalRondenNogTeGaan = 0;
+        public int aantalRonden = 0;
         public int BehaaldePunten = 0;
 
         public List<Moves> moves = new List<Moves>();
@@ -28,20 +29,19 @@ namespace Waterskibaan
             Skies = skies;
         }
 
-        public string HuidigeMove()
+        public void HuidigeMove()
         {
             Random random = new Random();
             int aantalMoves = moves.Count;
-            huidigeMove = "";
 
             if (random.Next(0, 4) == 0 && moves.Count > 0)
             {
                 int number = random.Next(aantalMoves);
-                huidigeMove = moves[number].naamMove;
+                huidigeMove = moves[number];
                 BehaaldePunten += moves[number].Uitvoeren();
-                return huidigeMove;
+                return;
             }
-            return huidigeMove;
+            huidigeMove = null;
         }
 
         public override string ToString()

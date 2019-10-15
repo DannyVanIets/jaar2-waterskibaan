@@ -44,6 +44,7 @@ namespace VisualisatieWaterskibaan
             SportersInstructieGroepTekenen();
             SportersInstructionStartingTekenen();
             LaatLichsteKleurenVanSportersZien();
+            UniekeMovesLatenZien();
         }
 
         public void LabelsTonen()
@@ -52,32 +53,76 @@ namespace VisualisatieWaterskibaan
 
             LabelAantalSecondenVoorbij.Content = $"Aantal seconden voorbij: {game.totalSecondsPassed}";
             LabelTotaalAantalBezoekers.Content = $"Totaal aantal bezoekers: {game.logger.ReturnAlleBezoekers()}";
-            LabelTotaalAantalBezoekersMetRodeKleding.Content = $"Totaal aantal bezoekers met rode kleding: {game.logger.bezoekerMetRood}";
 
+            LabelTotaalAantalBezoekersMetRodeKleding.Content = $"Totaal aantal bezoekers met rode kleding: {game.logger.bezoekerMetRood}";
+            LabelHoogsteScore.Content = $"Hoogste score: {game.logger.HoogsteScoreVanSporter()}";
+
+            LabelTotaalAantalRondjes.Content = $"Totaal aantal rondjes die worden gedaan: {game.logger.TotaalAantalRondjes()}";
             LabeLijnvoorraad.Content = $"{game.waterskibaan.lv.ToString()}";
+        }
+
+        public void UniekeMovesLatenZien()
+        {
+            CanvasUniekeMoves.Children.Clear();
+
+            double labelAxisX = 0.0;
+            double labelAxisY = 0.0;
+
+            if (game.logger.UniekeMoves().Count > 0)
+            {
+                int positie = 0;
+                foreach (string move in game.logger.UniekeMoves())
+                {
+                    Label labelUniekeMove = new Label();
+
+                    labelUniekeMove.Width = 200;
+                    labelUniekeMove.Height = 30;
+
+                    if (move != "")
+                    {
+                        labelUniekeMove.Content = $"{move}";
+
+                        labelUniekeMove.SetValue(Canvas.LeftProperty, labelAxisX);
+                        labelUniekeMove.SetValue(Canvas.TopProperty, labelAxisY);
+
+                        CanvasUniekeMoves.Children.Add(labelUniekeMove);
+
+                        labelAxisY += 30;
+                    }
+                    positie++;
+                }
+            }
         }
 
         public void LaatLichsteKleurenVanSportersZien()
         {
             Top10LichsteKleuren.Children.Clear();
 
-            double CirkelAxisX = 0.0;
-            double CirkelAxisY = 0.0;
+            double RectangleAxisX = 0.0;
+            double RectangleAxisY = 0.0;
 
             foreach (Sporter sporter in game.logger.TienSportersMetLichsteKleur())
             {
-                Ellipse lichsteKleur = new Ellipse();
+                Rectangle lichsteKleur = new Rectangle();
 
                 lichsteKleur.Fill = GetKleurSporter(sporter);
-                lichsteKleur.Width = 20;
-                lichsteKleur.Height = 20;
+                lichsteKleur.Width = 50;
+                lichsteKleur.Height = 50;
 
-                lichsteKleur.SetValue(Canvas.LeftProperty, CirkelAxisX);
-                lichsteKleur.SetValue(Canvas.TopProperty, CirkelAxisY);
+                lichsteKleur.SetValue(Canvas.LeftProperty, RectangleAxisX);
+                lichsteKleur.SetValue(Canvas.TopProperty, RectangleAxisY);
 
                 Top10LichsteKleuren.Children.Add(lichsteKleur);
 
-                CirkelAxisY += 30;
+                if (RectangleAxisX >= 200)
+                {
+                    RectangleAxisX = 0;
+                    RectangleAxisY += 50;
+                }
+                else
+                {
+                    RectangleAxisX += 50;
+                }
             }
         }
 
@@ -197,6 +242,8 @@ namespace VisualisatieWaterskibaan
                 rectangle.Fill = GetKleurSporter(lijn.sporter);
                 rectangle.Width = 60;
                 rectangle.Height = 60;
+                //rectangle.StrokeThickness = 2;
+                //rectangle.Stroke = Brushes.Black;
 
                 labelSporterPositie.Width = 60;
                 labelSporterPositie.Height = 60;
@@ -205,11 +252,11 @@ namespace VisualisatieWaterskibaan
                 labelSporterMove.Height = 60;
 
                 labelSporterPositie.Content = $"Positie: {lijn.PositieOpDeKabel}\nRondes\nTeGaan: {lijn.sporter.AantalRondenNogTeGaan}";
+                labelSporterMove.Content = "";
 
-                string huidigeMove = lijn.sporter.HuidigeMove();
-                if (!string.IsNullOrEmpty(huidigeMove))
+                if (lijn.sporter.huidigeMove != null)
                 {
-                    labelSporterMove.Content = $"{huidigeMove}";
+                    labelSporterMove.Content = $"{lijn.sporter.huidigeMove.naamMove}";
                 }
 
                 watercirkel.Children.Add(rectangle);

@@ -10,7 +10,7 @@ namespace Waterskibaan
     public class Logger
     {
         private List<Sporter> bezoekers = new List<Sporter>();
-        private Kabel kabel; //Gebeurt nog niks met kabel. Moet waarschijnlijk wel.
+        private Kabel kabel;
 
         public int bezoekerMetRood = 0;
 
@@ -35,63 +35,46 @@ namespace Waterskibaan
             return alleBezoekers.Count();
         }
 
-        /*public int HoogsteScoreVanSporter() Werkt nog niet.
+        public int HoogsteScoreVanSporter()
         {
-            var hoogsteScore = from bezoeker in bezoekers
-                               orderby bezoeker.BehaaldePunten
-                               select bezoeker.BehaaldePunten;
+            int hoogsteScore = 0;
+            if(ReturnAlleBezoekers() > 0)
+            {
+                hoogsteScore = bezoekers.Max(x => x.BehaaldePunten);
+            }
             return hoogsteScore;
-        }*/
+        }
 
         public List<Sporter> TienSportersMetLichsteKleur()
         {
-            var toptiensporters = from bezoeker in bezoekers
-                               where bezoeker.KledingKleur.ToArgb() == bepaalLichsteKleur(bezoeker.KledingKleur)
-                               select bezoekers.Take(10);
+            var toptiensporters = (from sporter in bezoekers
+                                   orderby bepaalLichsteKleur(sporter.KledingKleur) descending
+                                   select sporter).Take(10);
 
             List<Sporter> lijstMetTop10LichteSporters = new List<Sporter>();
-
-            foreach (Sporter sporter in toptiensporters)
-            {
-                lijstMetTop10LichteSporters.Add(sporter);
-            }
+            lijstMetTop10LichteSporters = toptiensporters.ToList();
 
             return lijstMetTop10LichteSporters;
         }
 
         public int TotaalAantalRondjes()
         {
-            var rondesVanAlleBezoekers = from bezoeker in bezoekers
-                                      where bezoeker.AantalRondenNogTeGaan > 0
-                                      select bezoeker.AantalRondenNogTeGaan;
-
-            int TotaalaantalRondjes = 0;
-
-            foreach(int rondjes in rondesVanAlleBezoekers)
-            {
-                TotaalaantalRondjes += rondjes;
-            }
-
-            return TotaalaantalRondjes;
+            int totaalAantalRonden = bezoekers.Sum(x => x.aantalRonden);
+            return totaalAantalRonden;
         }
 
-        /*public List<Moves> UniekeMoves() Werkt nog niet.
+        public List<string> UniekeMoves()
         {
-            var uniekeMovesLijst = from bezoeker in bezoekers
-                                   where !string.IsNullOrEmpty(bezoeker.huidigeMove)
-                                   select bezoekers;
+            var uniekeMovesLijst = (from lijn in kabel._lijnen
+                                   where lijn.sporter.huidigeMove != null
+                                   select lijn.sporter.huidigeMove.naamMove).Distinct();
 
-            List<Moves> uniekeMoves = new List<Moves>();
+            List<string> uniekeMoves = uniekeMovesLijst.ToList();
 
-            foreach (Sporter sporter in uniekeMovesLijst)
-            {
-                uniekeMoves.Add(sporter.moves);
-            }
+            return uniekeMoves;
+        }
 
-            return uniekeMovesLijst;
-        }*/
-
-        private bool ColorsAreClose(Color a, Color z, int threshold = 50)
+        private bool ColorsAreClose(Color a, Color z, int threshold = 100)
         {
             int r = (int)a.R - z.R,
                 g = (int)a.G - z.G,
